@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .button {
+      width: 150px;
+      height: 60px;
+
+      margin: 30px 30px;
+      padding: 5px 5px;
+
+      background-color: #8bd38b;
+      transition: background-color 300ms;
+      border: none;
+      border-radius: 10px;
+
+      color: #000000;
+      font-size: 25px;
+    }
+
+    .button:hover {
+      background-color: #278827;
+
+      color: #ffffff;
+    }
+
+    .button:active {
+      background-color: #cc8b41;
+    }
+
+    .button:focus {
+      outline: 1px solid #000000;
+    }
+
+    .button:focus-visible {
+      outline: 2px solid #000000;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <button class="button"></button>
+  </main>
+  <script>
+    const button = document.querySelector('.button');
+
+    function getClicks() {
+      fetch('http://localhost:3000/')
+        .then(response => response.text())
+        .then(numberOfClicks => button.textContent = numberOfClicks);
+    } 
+
+    getClicks();
+
+    button.addEventListener('click', () => {
+      fetch('http://localhost:3000/', {
+        method: 'POST'
+      }).then(response => response.text())
+        .then(numberOfClicks => button.textContent = numberOfClicks);
+    });
+  </script>
+</body>
+</html>
