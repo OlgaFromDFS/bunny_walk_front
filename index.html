@@ -58,7 +58,8 @@
     button.addEventListener('click', () => {
       fetch('http://localhost:3000/', {
         method: 'POST'
-      }).then(() => getClicks())
+      }).then(response => response.text())
+        .then(numberOfClicks => button.textContent = numberOfClicks);
     });
   </script>
 </body>
